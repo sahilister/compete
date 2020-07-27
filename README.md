@@ -1,2 +1,2 @@
 # compete
-Multiplayer online typing game
+Online multiplayer typing game
