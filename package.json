@@ -1,9 +1,0 @@
-{
-  "name": "compete",
-  "version": "0.1.0",
-  "description": "a multiplayer typing game",
-  "main": "index.js",
-  "repository": "https://github.com/sahilister/compete.git",
-  "author": "sahilister <sahil.dhiman27091999@gmail.com>",
-  "license": "MIT"
-}
