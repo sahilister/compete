@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import Spectre from 'spectre.css'
-import Text from './components/test/Text'
-import getText from './components/test/getText'
+import Color from './components/test/Color'
+// import GetText from './components/test/GetText'
+import axios from 'axios'
 import Speed from './components/layout/Speed'
 
 const initialState = {
-  text: getText(),
+  text: 'Loading...',
   userInput: '',
   symbols: 0,
   sec: 0,
@@ -16,8 +17,20 @@ const initialState = {
 class App extends Component {
   state = initialState;
 
+  fetchText = async text => {
+    this.setState({ loading: true })
+    const res = await axios.get(`https://en.wikipedia.org/api/rest_v1/page/random/summary`)
+    console.log(res.data.extract)
+    this.setState({ text: res.data.extract})
+  }
+
+  componentDidMount(){
+      this.fetchText();
+    }
+
   onReload = () => {
-    this.setState(initialState)
+    this.setState(initialState);
+    this.fetchText();
   }
 
   onUserInputChange = (e) => {
@@ -60,7 +73,10 @@ class App extends Component {
       <div className="container grid-lg">
         <h1>compete</h1>
         <div className="form-group">
-          <Text text={this.state.text} userInput={this.state.userInput}/>
+          <Color
+            text={this.state.text}
+            userInput={this.state.userInput}
+          />
           <br />
           <div className="row">
             <textarea
